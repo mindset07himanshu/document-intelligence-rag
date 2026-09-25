@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is risk management?",
+    "expected_source_hint": "SN_P1_eng_2021.pdf"
+  },
+  {
+    "question": "What is indemnity?",
+    "expected_source_hint": "insurance knowledge base"
+  },
+  {
+    "question": "Under what circumstances can a person withdraw money from their MPF account?",
+    "expected_source_hint": "SN_MPF_Eng.pdf"
+  }
+]
