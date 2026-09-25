@@ -1,4 +1,5 @@
 from pathlib import Path
+import time
 
 import streamlit as st
 
@@ -87,10 +88,13 @@ if question:
         for m in st.session_state.messages[-settings.max_history_turns * 2 :]
     ]
 
-    with st.chat_message("assistant"):
-        with st.spinner("Searching the knowledge base..."):
-            result = agent.answer(question, history=history)
+   with st.chat_message("assistant"):
+    with st.spinner("Searching the knowledge base..."):
+        start_time = time.perf_counter()
+        result = agent.answer(question, history=history)
+        elapsed_ms = (time.perf_counter() - start_time) * 1000
 
+    st.markdown(result.answer)
         st.markdown(result.answer)
 
         if result.sources:
@@ -98,9 +102,11 @@ if question:
                 for source in result.sources:
                     st.write(source)
 
-        if result.confidence_label:
-            st.caption(f"Retrieval signal: {result.confidence_label}")
-
+if result.confidence_label:
+    st.caption(
+        f"Retrieval signal: {result.confidence_label} · "
+        f"Response time: {elapsed_ms:.0f} ms"
+    )
     st.session_state.messages.append({"role": "user", "content": question})
     st.session_state.messages.append(
         {
