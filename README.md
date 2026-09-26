@@ -20,6 +20,7 @@ These files are explicitly synthetic demo content and should not be presented as
 - Minimum relevance score: `0.42`
 - Embeddings: `sentence-transformers/all-MiniLM-L6-v2`
 - Vector store: Chroma
+- LLM: Gemini 3.8 Flash
 
 ## Measuring performance
 
